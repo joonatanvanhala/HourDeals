@@ -57,7 +57,7 @@ app.post('/add', function(req, res){
   let query = db.query(sql, tarjous, (err, result)=>{
     if(err) throw err;
   });
-  res.redirect('/');
+  res.redirect('/add');
 });
 
 //start server
