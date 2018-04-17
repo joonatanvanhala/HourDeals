@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method='POST', action='/add')
+      #form-group
+        label Offer title:
+        input(name='Name', type='text')
+      #form-group
+        label Description:
+        textarea(name='Description', type = 'text')
+      #form-group
+        label Quantity:
+        input(name='Quantity', type = 'text')
+      #form-group
+        label Discount (percentage):
+        input(name='Discount', type = 'text')
+      #form-group
+        label Original price:
+        input(name='OriginalPrice', type = 'text')
+      #form-group
+        label Company ID:
+        input(name='CompanyID', type = 'text')
+      #form-group
+        label Category:
+        input(name='CategoryID', type = 'text')
+      br
+      input(type='submit',value='Submit')
