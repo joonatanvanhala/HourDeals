@@ -2,7 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mysql = require('mysql');
+const session = require('express-session');
+const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const bcrypt = require('bcryptjs');
 
 //create connection to mysql
 var db = require('./db/db.js');
@@ -15,6 +19,23 @@ app.set('view engine', 'pug');
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// Express Validator Middleware
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
 
 // Home Route
 app.get('/', function(req, res){
@@ -62,6 +83,50 @@ app.post('/add', function(req, res){
 //rekisteröidy-sivu
 app.get('/register', function(req, res){
   res.render('register');
+});
+app.post('/register', function(req, res){
+  const companyname = req.body.companyname;
+  const city = req.body.city;
+  const address = req.body.address;
+  const postcode = req.body.postcode;
+  const password = req.body.password;
+  const password2 = req.body.password2;
+
+  req.checkBody('companyname', 'Company name is required').notEmpty();
+  req.checkBody('city', 'City is required').notEmpty();
+  req.checkBody('address', 'Address is required').notEmpty();
+  req.checkBody('postcode', 'Postal code is required').notEmpty();
+  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
+  let errors = req.validationErrors();
+
+  if(errors){
+    res.render('register', {
+      errors:errors
+    });
+  }
+
+
+    bcrypt.genSalt(10, function(err, salt){
+      let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password};
+      let sql = "INSERT INTO businessusers SET ?";
+      bcrypt.hash(user.password, salt, function(err, hash){
+        if(err){
+          console.log(err);
+        }
+        let query = db.query(sql, user, (err, result)=>{
+          if(err) throw err;
+        else {
+            res.redirect('/login');
+          }
+        });
+      });
+    });
+  });
+
+app.get('/Login', function(req, res){
+  res.render('login');
 });
 //start server
 app.listen(3000, function(req, res){
