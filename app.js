@@ -59,7 +59,10 @@ app.post('/add', function(req, res){
   });
   res.redirect('/add');
 });
-
+//rekisteröidy-sivu
+app.get('/register', function(req, res){
+  res.render('register');
+});
 //start server
 app.listen(3000, function(req, res){
   console.log('Server started on port 3000');

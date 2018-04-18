@@ -9,6 +9,7 @@
   "author": "Joonatan Vanhala",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "bookshelf": "^0.13.3",
     "express": "^4.16.3",
@@ -17,6 +18,8 @@
     "mysql": "^2.15.0",
     "mysql-model": "0.0.3",
     "nodemon": "^1.17.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.3"
   }
 }
