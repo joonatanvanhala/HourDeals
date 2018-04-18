@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
@@ -19,6 +20,20 @@ app.set('view engine', 'pug');
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//express session Middleware
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Express Messages Middleware
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 // Express Validator Middleware
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -80,6 +95,7 @@ app.post('/add', function(req, res){
   });
   res.redirect('/add');
 });
+
 //rekisteröidy-sivu
 app.get('/register', function(req, res){
   res.render('register');
@@ -97,7 +113,7 @@ app.post('/register', function(req, res){
   req.checkBody('address', 'Address is required').notEmpty();
   req.checkBody('postcode', 'Postal code is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('password2', 'Passwords do not match').equals(password);
 
   let errors = req.validationErrors();
 
@@ -106,8 +122,7 @@ app.post('/register', function(req, res){
       errors:errors
     });
   }
-
-
+  else{
     bcrypt.genSalt(10, function(err, salt){
       let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password};
       let sql = "INSERT INTO businessusers SET ?";
@@ -123,8 +138,9 @@ app.post('/register', function(req, res){
         });
       });
     });
+  }
   });
-
+//Login page
 app.get('/Login', function(req, res){
   res.render('login');
 });
