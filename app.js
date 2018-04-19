@@ -58,6 +58,8 @@ app.get('/', function(req, res){
         title: 'Hourdeals frontpage'
       });
 });
+
+
 //kaikki tajoukset
 app.get('/offers', (req, res) => {
   let sql = "SELECT * FROM offers";
@@ -79,21 +81,6 @@ app.get('/offers/:OfferID', function(req, res){
       offer: offer
     });
   });
-});
-//lisää tarjous-sivu
-app.get('/add', function(req, res){
-      res.render('add_offer', {
-        title: 'Add offer'
-      });
-});
-//lisää tarjous tietokantaan
-app.post('/add', function(req, res){
-  let tarjous = {OfferName: req.body.Name, Description: req.body.Description, Quantity: req.body.Quantity, Discount: req.body.Discount/100, OriginalPrice: req.body.OriginalPrice, CategoryID: req.body.CategoryID, CompanyID: req.body.CompanyID };
-  let sql = "INSERT INTO offers SET ?";
-  let query = db.query(sql, tarjous, (err, result)=>{
-    if(err) throw err;
-  });
-  res.redirect('/add');
 });
 
 //rekisteröidy-sivu
@@ -141,9 +128,11 @@ app.post('/register', function(req, res){
   }
   });
 //Login page
-app.get('/Login', function(req, res){
+app.get('/login', function(req, res){
   res.render('login');
 });
+let add = require('./routes/add');
+app.use('/add', add);
 //start server
 app.listen(3000, function(req, res){
   console.log('Server started on port 3000');
