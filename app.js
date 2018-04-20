@@ -60,79 +60,17 @@ app.get('/', function(req, res){
 });
 
 
-//kaikki tajoukset
-app.get('/offers', (req, res) => {
-  let sql = "SELECT * FROM offers";
-    db.query(sql, (err, results) => {
-        if(err) throw err;
-        else {
-          res.render('offers',{
-            offer: results
-          });
-        }
-    });
-});
-//klikattu tarjous
-app.get('/offers/:OfferID', function(req, res){
-  let sql = `SELECT * FROM offers WHERE OfferID =${req.params.OfferID}`;
-  db.query(sql, function(err, offer){
-      if(err) console.log(err);
-      res.render('offer',{
-      offer: offer
-    });
-  });
-});
 
-//rekisteröidy-sivu
-app.get('/register', function(req, res){
-  res.render('register');
-});
-app.post('/register', function(req, res){
-  const companyname = req.body.companyname;
-  const city = req.body.city;
-  const address = req.body.address;
-  const postcode = req.body.postcode;
-  const password = req.body.password;
-  const password2 = req.body.password2;
-
-  req.checkBody('companyname', 'Company name is required').notEmpty();
-  req.checkBody('city', 'City is required').notEmpty();
-  req.checkBody('address', 'Address is required').notEmpty();
-  req.checkBody('postcode', 'Postal code is required').notEmpty();
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(password);
-
-  let errors = req.validationErrors();
-
-  if(errors){
-    res.render('register', {
-      errors:errors
-    });
-  }
-  else{
-    bcrypt.genSalt(10, function(err, salt){
-      let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password};
-      let sql = "INSERT INTO businessusers SET ?";
-      bcrypt.hash(user.password, salt, function(err, hash){
-        if(err){
-          console.log(err);
-        }
-        let query = db.query(sql, user, (err, result)=>{
-          if(err) throw err;
-        else {
-            res.redirect('/login');
-          }
-        });
-      });
-    });
-  }
-  });
-//Login page
-app.get('/login', function(req, res){
-  res.render('login');
-});
+//Bring in routes
 let add = require('./routes/add');
+let login = require('./routes/login');
+let offers = require('./routes/offers');
+let register = require('./routes/register');
+app.use('/login', login);
+app.use('/offers', offers);
+app.use('/register', register);
 app.use('/add', add);
+
 //start server
 app.listen(3000, function(req, res){
   console.log('Server started on port 3000');

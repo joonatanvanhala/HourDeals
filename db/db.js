@@ -8,8 +8,6 @@ const db = mysql.createConnection({
   user     : 'root',
   database : 'hourdeals'
 });
-
-//connect
 db.connect(function(err){
   if(err){
     throw err;
