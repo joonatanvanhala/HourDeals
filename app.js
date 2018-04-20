@@ -83,6 +83,18 @@ app.get('/offers/:OfferID', function(req, res){
   });
 });
 
+//muokkaa tarjousta
+app.get('/offers/edit/:OfferID', function(req, res){
+  let sql = `SELECT * FROM offers WHERE OfferID =${req.params.OfferID}`;
+  db.query(sql, function(err, offer){
+      if(err) console.log(err);
+      res.render('edit_offer',{
+      title: 'Edit offer',
+      offer: offer
+    });
+  });
+});
+
 //rekisteröidy-sivu
 app.get('/register', function(req, res){
   res.render('register');

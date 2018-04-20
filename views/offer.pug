@@ -2,5 +2,11 @@ extends layout
 
 block content
   each o,i in offer
-      h1= o.OfferName
-        p=o.Description 
+    h1= o.OfferName
+    p=o.Description
+    p=o.Quantity
+    p=o.Discount
+    p=o.OriginalPrice
+    P=o.CategoryID
+    p=o.OfferID
+    a.btn.btn-default(href='/offers/edit/'+o.OfferID)='Edit offer'
