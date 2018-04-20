@@ -59,66 +59,6 @@ app.get('/', function(req, res){
       });
 });
 
-
-<<<<<<< HEAD
-=======
-//kaikki tajoukset
-app.get('/offers', (req, res) => {
-  let sql = "SELECT * FROM offers";
-    db.query(sql, (err, results) => {
-        if(err) throw err;
-        else {
-          res.render('offers',{
-            offer: results
-          });
-        }
-    });
-});
-//klikattu tarjous
-app.get('/offers/:OfferID', function(req, res){
-  let sql = `SELECT * FROM offers WHERE OfferID =${req.params.OfferID}`;
-  db.query(sql, function(err, offer){
-      if(err) console.log(err);
-      res.render('offer',{
-      offer: offer
-    });
-  });
-});
-
-//muokkaa tarjousta
-app.get('/offers/edit/:OfferID', function(req, res){
-  let sql = `SELECT * FROM offers WHERE OfferID =${req.params.OfferID}`;
-  db.query(sql, function(err, offer){
-      if(err) console.log(err);
-      res.render('edit_offer',{
-      title: 'Edit offer',
-      offer: offer
-    });
-  });
-});
-
-//rekisteröidy-sivu
-app.get('/register', function(req, res){
-  res.render('register');
-});
-app.post('/register', function(req, res){
-  const companyname = req.body.companyname;
-  const city = req.body.city;
-  const address = req.body.address;
-  const postcode = req.body.postcode;
-  const password = req.body.password;
-  const password2 = req.body.password2;
-
-  req.checkBody('companyname', 'Company name is required').notEmpty();
-  req.checkBody('city', 'City is required').notEmpty();
-  req.checkBody('address', 'Address is required').notEmpty();
-  req.checkBody('postcode', 'Postal code is required').notEmpty();
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(password);
-
-  let errors = req.validationErrors();
->>>>>>> 2e2b4449744c56ad3fd2ab981f9f575dd569b19c
-
 //Bring in routes
 let add = require('./routes/add');
 let login = require('./routes/login');

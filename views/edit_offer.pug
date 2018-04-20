@@ -2,24 +2,24 @@ extends layout
 
 block content
   h1 #{title}
-  form(method='POST', action='offers/edit/'+offer._id)
+  form(method='POST', action='/offers/edit/'+offer.OfferID)
     #form-group
       label Offer title:
-      input(name='Name', type='text', value=offer.OfferName)
+      input(name='Name', type='text', value=offer[0].OfferName)
     #form-group
       label Description:
-      textarea(name='Description', type = 'text' )
+      textarea(name='Description', type = 'text')=offer[0].Description
     #form-group
       label Quantity:
-      input(name='Quantity', type = 'text')
+      input(name='Quantity', type = 'text', value=offer[0].Quantity)
     #form-group
       label Discount (percentage):
-      input(name='Discount', type = 'text')
+      input(name='Discount', type = 'text', value= offer[0].Discount)
     #form-group
       label Original price:
-      input(name='OriginalPrice', type = 'text')
+      input(name='OriginalPrice', type = 'text', value= offer[0].OriginalPrice)
     #form-group
       label Category:
-      input(name='CategoryID', type = 'text')
+      input(name='CategoryID', type = 'text', value= offer[0].CategoryID)
     br
     input(type='submit',value='Submit')
