@@ -10,16 +10,12 @@ module.exports = function(passport){
     let sql = 'SELECT * FROM businessusers WHERE CompanyName = ?';
      db.query(sql,[username], (err, user)=>{
       if(err) throw err;
-      if(!user){
-        console.log("no user found");
+      if(!user.length){
         return done(null, false, {message: 'No user found'});
       }
       // Match Password
       if(password == user[0].CompanyPassword)
       {
-          console.log(password);
-          console.log(user[0].CompanyPassword);
-          console.log('match');
           cname = user[0].CompanyName;
           return done(null, user[0]);
         }

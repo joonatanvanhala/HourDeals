@@ -51,8 +51,9 @@ router.post('/edit/:OfferID', function(req, res){
   let offerid = ID;
   let sql = `UPDATE offers SET OfferName = '${newOfferName}' , Quantity ='${newQuantity}' , Discount = '${newDiscount}', OriginalPrice ='${newOriginalPrice}' , CategoryID='${newCategoryID}', Description= '${newDescription}' WHERE OfferID ='${offerid}'`;
   db.query(sql, function(err, offer){
-      if(err) console.log(err);
+      if(err) throw err;
     });
+    req.flash('success','Offer edited');
     res.redirect('/offers');
   });
 

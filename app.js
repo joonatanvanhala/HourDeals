@@ -27,7 +27,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-
+// Set Public Folder
+app.use(express.static(path.join(__dirname, 'public')));
 // Express Messages Middleware
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
@@ -68,6 +69,7 @@ app.get('/', function(req, res){
       res.render('frontpage', {
         title: 'Hourdeals frontpage'
       });
+      req.flash("test")
 });
 
 //Bring in routes
