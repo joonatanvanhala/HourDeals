@@ -10,7 +10,7 @@ var db = require('../db/db.js');
 
 
 //lisää tarjous-sivu
-router.get('/', function(req, res){
+router.get('/',ensureAuthenticated ,function(req, res){
       res.render('add_offer', {
         title: 'Add offer'
       });
@@ -51,4 +51,14 @@ router.post('/', function(req, res){
   }
   res.redirect('/add');
 });
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('danger', 'Please login');
+    res.redirect('/login');
+  }
+}
 module.exports = router;

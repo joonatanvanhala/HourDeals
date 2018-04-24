@@ -6,7 +6,7 @@ const router = express.Router();
 var db = require('../db/db.js');
 
 //kaikki tajoukset
-router.get('/', (req, res) => {
+router.get('/',ensureAuthenticated ,(req, res) => {
   let sql = "SELECT * FROM offers";
     db.query(sql, (err, results) => {
         if(err) throw err;
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     });
 });
 //klikattu tarjous
-router.get('/:OfferID', function(req, res){
+router.get('/:OfferID',ensureAuthenticated , function(req, res){
   let sql = `SELECT * FROM offers WHERE OfferID =${req.params.OfferID}`;
   db.query(sql, function(err, offer){
       if(err) console.log(err);
@@ -29,7 +29,7 @@ router.get('/:OfferID', function(req, res){
 });
 //muokkaa tarjousta
 var ID;
-router.get('/edit/:OfferID', function(req, res){
+router.get('/edit/:OfferID', ensureAuthenticated, function(req, res){
   ID = req.params.OfferID;
   let sql = `SELECT * FROM offers WHERE OfferID =${req.params.OfferID}`;
   db.query(sql, function(err, offer){
@@ -55,4 +55,14 @@ router.post('/edit/:OfferID', function(req, res){
     });
     res.redirect('/offers');
   });
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('danger', 'Please login');
+    res.redirect('/login');
+  }
+}
 module.exports = router;

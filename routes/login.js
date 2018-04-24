@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const router = express.Router();
 var db = require('../db/db.js');
-var passport = require('passport');
+const passport = require('passport');
 
 router.get('/', function(req, res){
   res.render('login');
@@ -20,6 +20,7 @@ router.post('/', function(req, res, next){
 // logout
 router.get('/logout', function(req, res){
   req.logout();
+  console.log('Logged out');
   req.flash('success', 'You are logged out');
   res.redirect('/login');
 });
