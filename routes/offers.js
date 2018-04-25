@@ -57,6 +57,18 @@ router.post('/edit/:OfferID', function(req, res){
     res.redirect('/offers');
   });
 
+
+//delete offer
+router.post('/delete/:OfferID', function(req, res)
+{
+  let sql = `DELETE FROM offers WHERE OfferID = ${req.params.OfferID}`;
+  db.query(sql,function(err, result){
+    if(err) throw err;
+    console.log(result);
+  });
+  res.redirect('/offers');
+});
+
 // Access Control
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){

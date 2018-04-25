@@ -10,3 +10,5 @@ block content
     P=o.CategoryID
     p=o.OfferID
     a.btn.btn-default(href='/offers/edit/'+o.OfferID)='Edit offer'
+    form(method='POST', action='/offers/delete/'+o.OfferID)
+      button='Delete'
