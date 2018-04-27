@@ -13,7 +13,7 @@ router.get('/',ensureAuthenticated ,(req, res) => {
     db.query(sql, (err, results) => {
         if(err) throw err;
         else {
-          res.render('offers',{
+          res.render('businessuser',{
             offer: results
           });
         }
@@ -64,7 +64,7 @@ router.post('/add', function(req, res){
       }
     });
   }
-  res.redirect('/offers');
+  res.redirect('/businessuser');
 });
 
 //muokkaa tarjousta
@@ -94,7 +94,7 @@ router.post('/edit/:OfferID', function(req, res){
       if(err) throw err;
     });
     req.flash('success','Offer edited');
-    res.redirect('/offers');
+    res.redirect('/businessuser');
   });
 
 
@@ -106,7 +106,7 @@ router.post('/delete/:OfferID', function(req, res)
     if(err) throw err;
     console.log(result);
   });
-  res.redirect('/offers');
+  res.redirect('/businessuser');
 });
 
 // Access Control

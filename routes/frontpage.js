@@ -17,13 +17,14 @@ router.get('/', function(req, res){
         title: 'Hourdeals frontpage'
       });
 });
-router.post('/frontpage/register', function(req, res){
+router.post('/register', function(req, res){
   const companyname = req.body.companyname;
   const city = req.body.city;
   const address = req.body.address;
   const postcode = req.body.postcode;
   const password = req.body.password;
   const password2 = req.body.password2;
+
 
   req.checkBody('companyname', 'Company name is required').notEmpty();
   req.checkBody('city', 'City is required').notEmpty();
@@ -33,7 +34,8 @@ router.post('/frontpage/register', function(req, res){
   req.checkBody('password2', 'Passwords do not match').equals(password);
   let errors = req.validationErrors();
 
-  if(errors){
+  if(errors)
+  {
     res.render('frontpage', {
       errors:errors
     });
@@ -56,18 +58,17 @@ router.post('/frontpage/register', function(req, res){
       });
     });
   }
-  });
-
+});
   // Login Process
-  router.post('/frontpage/login', function(req, res, next){
+  router.post('/login', function(req, res, next){
     passport.authenticate('local', {
-      successRedirect:'/businessusers',
+      successRedirect:'/businessuser',
       failureRedirect:'/',
       failureFlash: true
     })(req, res, next);
   });
   // logout
-  router.get('/frontpage/businessusers/logout', function(req, res){
+  router.get('/businessuser/logout', function(req, res){
     req.logout();
     console.log('Logged out');
     req.flash('success', 'You are logged out');

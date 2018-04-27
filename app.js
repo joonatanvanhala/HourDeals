@@ -65,9 +65,9 @@ app.get('*', function(req, res, next){
 
 //Bring in routes
 let frontpage = require('./routes/frontpage');
-let businessusers = require('./routes/businessusers');
+let businessuser = require('./routes/businessuser');
 app.use('/', frontpage);
-app.use('/businessusers', businessusers);
+app.use('/businessuser', businessuser);
 
 //start server
 app.listen(3000, function(req, res){
