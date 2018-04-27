@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 #{title}
-  form(method='POST', action='/offers/edit/'+offer.OfferID)
+  form(method='POST', action='/businessusers/edit/'+offer.OfferID)
     #form-group
       label Offer title:
       input(name='Name', type='text', value=offer[0].OfferName)

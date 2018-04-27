@@ -63,24 +63,11 @@ app.get('*', function(req, res, next){
   next();
 });
 
-
-// Home Route
-app.get('/', function(req, res){
-      res.render('frontpage', {
-        title: 'Hourdeals frontpage'
-      });
-      req.flash("test")
-});
-
 //Bring in routes
-let add = require('./routes/add');
-let login = require('./routes/login');
-let offers = require('./routes/offers');
-let register = require('./routes/register');
-app.use('/login', login);
-app.use('/offers', offers);
-app.use('/register', register);
-app.use('/add', add);
+let frontpage = require('./routes/frontpage');
+let businessusers = require('./routes/businessusers');
+app.use('/', frontpage);
+app.use('/businessusers', businessusers);
 
 //start server
 app.listen(3000, function(req, res){

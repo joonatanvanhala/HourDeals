@@ -2,3 +2,35 @@ extends layout
 
 block content
     h1 #{title}
+    h1 Login
+    form(method='POST', action='/frontpage/login')
+      #form-group
+        label Companyname:
+        input.form-control(name='username',type='text')
+      #form-group
+        label Password:
+        input.form-control(name='password',type='password')
+      br
+      input.btn.btn-primary(type='submit',value='Submit')
+    h1 Register
+    form(method='POST' action='/frontpage/register')
+      #form-group
+        label Company name:
+        input(name='companyname', type = 'text')
+      #form-group
+        label City name:
+        input(name='city', type = 'text')
+      #form-group
+        label Address:
+        input(name='address', type = 'text')
+      #form-group
+        label Postal code:
+        input(name='postcode', type = 'text')
+      #form-group
+        label Password:
+        input(name='password', type = 'password')
+      #form-group
+        label Verify password :
+        input(name='password2', type= "password")
+      br
+      input(type='submit', value='Submit')  
