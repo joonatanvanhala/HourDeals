@@ -1,11 +1,16 @@
 extends layout
 
 block content
-  each o,i in offer
-      tr: td 
-        a(href="/businessuser/"+o.OfferID)= o.OfferName 
-      td= o.Description  
-  
+  div(class ='offers')
+    div(class = 'row')
+      each o,i in offer
+          if(i % 2 == 0)
+            div(class = 'column')
+              a(href="/businessuser/"+o.OfferID)= o.OfferName 
+          if(i % 2 != 0)  
+            div(class = 'column')
+              a(href="/businessuser/"+o.OfferID)= o.OfferName 
+        
   form(method='POST', action='/businessuser/add')
     #form-group
       label Offer title:

@@ -9,9 +9,37 @@
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
-
+form{
+  margin-bottom: 60px;
+}
 
 footer{
   position: absolute;
-  bottom: 10px;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  position: relative;
+
+  margin-top: -3em;
+
+}
+a{
+  color: black;
+}
+.column {
+    float: left;
+    width: 30%;
+    height: 80px;
+    border-style:inset;
+    border-radius: 10px;
+    column-gap: 20px;
+    background-color: #f4f4f4;
+    margin-top: 30px;
+    text-align: center;
+    padding: 0 15px 0 15px;
+}
+/* Clear floats after the columns */
+.row{
+
 }
