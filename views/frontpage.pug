@@ -1,6 +1,9 @@
-extends layout
-
-block content
+doctype html
+html
+  head
+    title HourDeals
+    link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet' href='/css2/style.css')
     head
       // Required meta tags
       meta(charset='utf-8')
@@ -88,15 +91,18 @@ block content
               form#login_form(method='POST', action='/login')
                 .form-group
                   label(for='login_username') Username
-                  input#form_input.form-control(type='text', placeholder='Username')
+                  input#form_input.form-control(type='text', placeholder='Username', name = 'username')
                 .form-group
                   label(for='login_password') Password
-                  input#form_input.form-control(type='password', placeholder='●●●●●●●●●●●')
+                  input#form_input.form-control(type='password', placeholder='●●●●●●●●●●●', name = 'password')
                 button#button_log-in.btn.btn-lg.btn-block(type='submit') Login
             #register.tab-pane.fade(role='tabpanel', aria-labelledby='register')
               form#register_form(method='post', action='/register')
                 .form-group
                   label(for='register_companyname') Company name
+                  input#form_input.form-control(type='text', name='companyname', placeholder='Company name')
+                .form-group
+                  label(for='register_username') Company name
                   input#form_input.form-control(type='text', name='companyname', placeholder='Company name')
                 .form-group
                   label(for='register_cityname') City
@@ -109,7 +115,7 @@ block content
                   input#form_input.form-control(type='text', name='postcode', placeholder='Postcode')
                 .form-group
                   label(for='register_email') Email
-                  input#form_input.form-control(type='text', name='email', placeholder='Email')
+                  input#form_input.form-control(type='email', name='email', placeholder='Email')
                 .form-group
                   label(for='register_ytunnus') Y-tunnus
                   input#form_input.form-control(type='text', name='ytunnus', placeholder='Y-tunnus')
@@ -120,6 +126,9 @@ block content
                   label(for='login_password2') Verify password
                   input#form_input.form-control(type='password', name='password2', placeholder='●●●●●●●●●●●')
                 button#button_register.btn.btn-lg.btn-block(type='submit') Register
+      script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+      script(src='/bower_components/jquery/dist/jquery.js')  
+      script(src='/js/js.js')
       footer#footer.container-fluid
         p © Hour Deals 2018
       script.
@@ -167,3 +176,4 @@ block content
         viewFactor: 0.3,
         distance: '100px'
         });
+        
