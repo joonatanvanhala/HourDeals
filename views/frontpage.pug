@@ -1,43 +1,169 @@
 extends layout
 
 block content
-    h1 #{title}
-    h1 Login
-    form(method='POST', action='/login')
-      #form-group
-        label Companyname:
-        input.form-control(name='username',type='text')
-      #form-group
-        label Password:
-        input.form-control(name='password',type='password')
-      br
-      input.btn.btn-primary(type='submit',value='Submit')
-        
-    h1 Register
-    form(method='POST' action='/register')
-      #form-group
-        label Company name:
-        input(name='companyname', type = 'text')
-      #form-group
-        label City name:
-        input(name='city', type = 'text')
-      #form-group
-        label Address:
-        input(name='address', type = 'text')
-      #form-group
-        label Postal code:
-        input(name='postcode', type = 'text')
-      #form-group
-        label Password:
-        input(name='password', type = 'password')
-      #form-group
-        label Verify password :
-        input(name='password2', type= "password")
-      #form-group
-        label Y-tunnus:
-        input(name='ytunnus', type = 'text')
-      #form-group
-        label E-mail:
-        input(name='email', type= "email")
-      br
-      input(type='submit', value='Submit')  
+    head
+      // Required meta tags
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      // Bootstrap CSS
+      link(rel='stylesheet', href='css/bootstrap.min.css')
+      link(rel='stylesheet', href='css/style.css')
+      // JS & jQuery
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+      script(src='js/bootstrap.min.js')
+      script(src='https://unpkg.com/scrollreveal/dist/scrollreveal.min.js')
+      // Fonts & Icons
+      link(href='https://fonts.googleapis.com/css?family=Engagement', rel='stylesheet')
+      link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+      link(href='https://fonts.googleapis.com/css?family=Nunito', rel='stylesheet')
+      title HourDeals | Welcome!
+    body#body(data-spy='scroll', data-target='.navbar')
+      nav#top.navbar.navbar-expand-lg.navbar-dark.scrolling-navbar.fixed-top.bg-nav
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar_collapse', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbar_collapse.collapse.navbar-collapse.justify-content-between
+          ul#navbartext.navbar-nav.navbar-left
+            li.nav-item
+              a.nav-link(href='#body') Home
+            li.nav-item
+              a.nav-link(href='#about_container') About
+            li.nav-item
+              a.nav-link(href='#contact_container') Contact us
+            li.nav-item
+              a.nav-link(href='#login_container') Login
+          // <a class="navbar-brand" href="#body">HourDeals</a>
+          ul#navbaricons.navbar-nav.navbar-right
+            li.nav-item
+              a.nav-link.fa.fa-facebook-square(target='_blank', href='https://www.facebook.com/HourDeals')
+            li.nav-item
+              a.nav-link.fa.fa-instagram(target='_blank', href='https://www.instagram.com/HourDeals/')
+            li.nav-item
+              a.nav-link.fa.fa-youtube-play(target='_blank', href='#')
+            li.nav-item
+              a.nav-link.fa.fa-linkedin(target='_blank', href='#')
+      section#coverpage.container-fluid.img-responsive
+        .container
+          h1 Hour Deals
+          p Building the new era of digital advertising
+          a#button_down.btn.btn-md(href='#about_container', role='button')
+            i.fa 
+      section#about_container.container-fluid
+        .row(style='position: relative')
+          #about_img.col-sm-6.order-1.text_left
+            // <img class="img-fluid img-responsive rounded mx-auto d-block" src="img/oneplus.png">
+          #about_text.col-sm-6.order-2.text_right
+            h3 What is it all about?
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+              br
+              br
+              |  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. noster legam tempor fore nulla noster noster amet illum esse magna esse enim quae velit summis quid quis minim duis aute duis aute ipsum quorum minim eram legam nulla quem quid quem quorum legam irure summis magna legam summis minim.
+      section#contact_container.container-fluid
+        .row(style='position: relative')
+          .col-sm-6
+            #contact_text.text_bottom
+              h3 Get in touch!
+              p
+                | If you have any question, comment or something else in your mind, please fill out the contact form.
+            form#contact_form
+              .form-group
+                label(for='full_name') Name
+                input#name_input.form-control(type='email', placeholder='Your name')
+              .form-group
+                label(for='contact_email_address') Email address
+                input#email_address_input.form-control(type='email', placeholder='name@example.com')
+              .form-group
+                label(for='contact_messagelabel') Message
+                textarea#message_input.form-control(rows='3', placeholder='Write your message here')
+              button#button_send.btn.btn-lg(type='submit') Send
+      section#login_container.container-fluid
+        #login_sheet.rounded.justify-content-center.mx-auto(style='position: relative')
+          ul#logintab.nav.nav-tabs.nav-fill.navbar-dark.col-lg-12(role='tablist')
+            li.nav-item
+              a#log-in-tab.nav-link.active(data-toggle='tab', href='#log-in', role='tab', aria-controls='log-in', aria-selected='true') Log In
+            li.nav-item
+              a#register-tab.nav-link(data-toggle='tab', href='#register', role='tab', aria-controls='register', aria-selected='false') Register
+          #myTabContent.tab-content
+            #log-in.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='log-in')
+              form#login_form(method='POST', action='/login')
+                .form-group
+                  label(for='login_username') Username
+                  input#form_input.form-control(type='text', placeholder='Username')
+                .form-group
+                  label(for='login_password') Password
+                  input#form_input.form-control(type='password', placeholder='●●●●●●●●●●●')
+                button#button_log-in.btn.btn-lg.btn-block(type='submit') Login
+            #register.tab-pane.fade(role='tabpanel', aria-labelledby='register')
+              form#register_form(method='post', action='/register')
+                .form-group
+                  label(for='register_companyname') Company name
+                  input#form_input.form-control(type='text', name='companyname', placeholder='Company name')
+                .form-group
+                  label(for='register_cityname') City
+                  input#form_input.form-control(type='text', name='city', placeholder='City')
+                .form-group
+                  label(for='register_address') Address
+                  input#form_input.form-control(type='text', name='address', placeholder='Address')
+                .form-group
+                  label(for='register_postcode') Postcode
+                  input#form_input.form-control(type='text', name='postcode', placeholder='Postcode')
+                .form-group
+                  label(for='register_email') Email
+                  input#form_input.form-control(type='text', name='email', placeholder='Email')
+                .form-group
+                  label(for='register_ytunnus') Y-tunnus
+                  input#form_input.form-control(type='text', name='ytunnus', placeholder='Y-tunnus')
+                .form-group
+                  label(for='login_password') Password
+                  input#form_input.form-control(type='password', name='password', placeholder='●●●●●●●●●●●')
+                .form-group
+                  label(for='login_password2') Verify password
+                  input#form_input.form-control(type='password', name='password2', placeholder='●●●●●●●●●●●')
+                button#button_register.btn.btn-lg.btn-block(type='submit') Register
+      footer#footer.container-fluid
+        p © Hour Deals 2018
+      script.
+        $('a[href^="#"]:not([data-toggle="tab"])').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+        scrollTop: target.offset().top
+        }, 1500);
+        }
+        });
+      script.
+        window.sr = ScrollReveal();
+        sr.reveal('.navbar',{
+        duration: 2000,
+        origin: 'bottom',
+        distance: '20px',
+        });
+        sr.reveal('.container',{
+        duration: 2000,
+        origin: 'bottom',
+        });
+        sr.reveal('.text_right',{
+        duration: 2000,
+        origin: 'right',
+        viewFactor: 0.5,
+        distance: '100px',
+        });
+        sr.reveal('.text_left',{
+        duration: 2000,
+        origin: 'left',
+        viewFactor: 0.5,
+        distance: '100px',
+        });
+        sr.reveal('.text_bottom',{
+        duration: 2000,
+        origin: 'left',
+        viewFactor: 0.3,
+        distance: '100px'
+        });
+        sr.reveal('#contact_form',{
+        duration: 2000,
+        origin: 'right',
+        viewFactor: 0.3,
+        distance: '100px'
+        });
