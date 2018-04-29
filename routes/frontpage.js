@@ -24,16 +24,20 @@ router.post('/register', function(req, res){
   const postcode = req.body.postcode;
   const password = req.body.password;
   const password2 = req.body.password2;
+  const ytunnus = req.body.ytunnus;
+  const email = req.body.email;
 
-
+  req.checkBody('email', 'E-mail not valid').isEmail();
   req.checkBody('companyname', 'Company name is required').notEmpty();
   req.checkBody('city', 'City is required').notEmpty();
   req.checkBody('address', 'Address is required').notEmpty();
   req.checkBody('postcode', 'Postal code is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
   req.checkBody('password2', 'Passwords do not match').equals(password);
-  let errors = req.validationErrors();
+  req.check('password', 'password must be at least 5 characters').isLength({min : 5});
+  req.check('ytunnus', 'Company ID not valid').isLength({min: 9, max:9});
 
+  let errors = req.validationErrors();
   if(errors)
   {
     res.render('frontpage', {
@@ -42,7 +46,7 @@ router.post('/register', function(req, res){
   }
   else{
     bcrypt.genSalt(10, function(err, salt){
-      let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password};
+      let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password, Ytunnus: ytunnus, Email: email};
       let sql = "INSERT INTO businessusers SET ?";
       bcrypt.hash(user.password, salt, function(err, hash){
         if(err){
