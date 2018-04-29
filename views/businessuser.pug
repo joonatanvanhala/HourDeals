@@ -29,6 +29,16 @@ block content
       input(name='OriginalPrice', type = 'text')
     #form-group
       label Category:
-      input(name='CategoryID', type = 'text')
+      select(name='CategoryID', type = 'text')
+        option(value = "" selected disabled hidden)
+        option(value = 1) Ruoka ja Juoma
+        option(value = 2) Elintarvikkeet
+        option(value = 3) Elektroniikka
+        option(value = 4) Vaatteet
+        option(value = 5) Autoilu
+        option(value = 6) Käyttötavarat
+        option(value = 7) Kauneus ja terveys
+        option(value = 8) Lelut
+        option(value = 9) Vapaa-aika
     br
     input(type='submit',value='Submit')
