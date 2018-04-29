@@ -18,6 +18,7 @@ router.get('/', function(req, res){
       });
 });
 router.post('/register', function(req, res){
+  const username = req.body.username;
   const companyname = req.body.companyname;
   const city = req.body.city;
   const address = req.body.address;
@@ -27,6 +28,7 @@ router.post('/register', function(req, res){
   const ytunnus = req.body.ytunnus;
   const email = req.body.email;
 
+  req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('email', 'E-mail not valid').isEmail();
   req.checkBody('companyname', 'Company name is required').notEmpty();
   req.checkBody('city', 'City is required').notEmpty();
@@ -46,7 +48,7 @@ router.post('/register', function(req, res){
   }
   else{
     bcrypt.genSalt(10, function(err, salt){
-      let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password, Ytunnus: ytunnus, Email: email};
+      let user = {CompanyName: companyname, City: city, Address: address, PostCode: postcode, CompanyPassword: password, Ytunnus: ytunnus, Email: email, UserName: username};
       let sql = "INSERT INTO businessusers SET ?";
       bcrypt.hash(user.password, salt, function(err, hash){
         if(err){

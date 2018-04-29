@@ -7,7 +7,7 @@ module.exports = function(passport){
   // Local Strategy
   passport.use(new LocalStrategy(function(username, password, done){
     // Match Username
-    let sql = 'SELECT * FROM businessusers WHERE CompanyName = ?';
+    let sql = 'SELECT * FROM businessusers WHERE UserName = ?';
      db.query(sql,[username], (err, user)=>{
       if(err) throw err;
       if(!user.length){
@@ -16,7 +16,7 @@ module.exports = function(passport){
       // Match Password
       if(password == user[0].CompanyPassword)
       {
-          cname = user[0].CompanyName;
+          cname = user[0].UserName;
           return done(null, user[0]);
         }
         else
@@ -31,7 +31,7 @@ module.exports = function(passport){
   });
 
   passport.deserializeUser(function(user, done) {
-    let sql2 = 'SELECT * FROM businessusers WHERE CompanyName = ?';
+    let sql2 = 'SELECT * FROM businessusers WHERE UserName = ?';
     db.query(sql2, cname, function(err, user){
       done(err, user);
     });

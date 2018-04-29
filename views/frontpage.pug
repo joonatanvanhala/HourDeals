@@ -86,6 +86,11 @@ html
               a#log-in-tab.nav-link.active(data-toggle='tab', href='#log-in', role='tab', aria-controls='log-in', aria-selected='true') Log In
             li.nav-item
               a#register-tab.nav-link(data-toggle='tab', href='#register', role='tab', aria-controls='register', aria-selected='false') Register
+          .container
+            != messages('message', locals)
+            if errors
+              each error, i in errors
+                div(class="alert alert-danger") #{error.msg}
           #myTabContent.tab-content
             #log-in.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='log-in')
               form#login_form(method='POST', action='/login')
@@ -102,8 +107,8 @@ html
                   label(for='register_companyname') Company name
                   input#form_input.form-control(type='text', name='companyname', placeholder='Company name')
                 .form-group
-                  label(for='register_username') Company name
-                  input#form_input.form-control(type='text', name='companyname', placeholder='Company name')
+                  label(for='register_username') Username
+                  input#form_input.form-control(type='text', name='username', placeholder='Username')
                 .form-group
                   label(for='register_cityname') City
                   input#form_input.form-control(type='text', name='city', placeholder='City')
