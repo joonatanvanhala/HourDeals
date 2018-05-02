@@ -43,6 +43,7 @@ router.post('/register', function(req, res){
     res.render('frontpage', {
       errors:errors
     });
+
   }
   else{
     bcrypt.genSalt(10, function(err, salt){
@@ -74,7 +75,6 @@ router.post('/register', function(req, res){
   // logout
   router.get('/businessuser/logout', function(req, res){
     req.logout();
-    console.log('Logged out');
     req.flash('success', 'You are logged out');
     res.redirect('/');
   });
