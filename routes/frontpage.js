@@ -13,9 +13,7 @@ var db = require('../db/db.js');
 
 // Home Route
 router.get('/', function(req, res){
-      res.render('frontpage', {
-        title: 'Hourdeals frontpage'
-      });
+      res.render('frontpage');
 });
 router.post('/register', function(req, res){
   const username = req.body.username;
