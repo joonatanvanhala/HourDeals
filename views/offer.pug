@@ -2,31 +2,14 @@ extends layout
 
 block content
   each o,i in offer
-    h1= o.OfferName 
-    p=o.Description 
-    p=o.Quantity 
-    p=o.Discount*100 
-    p=o.OriginalPrice 
-    if o.CategoryID == 1
-          category Ruoka ja juoma
-    if o.CategoryID == 2
-          category Elintarvikkeet
-    if o.CategoryID == 3
-          category Elektroniikka
-    if o.CategoryID == 4
-          category Vaatteet
-    if o.CategoryID == 5
-          category Autoilu
-    if o.CategoryID == 6
-          category Käyttötavarat
-    if o.CategoryID == 7
-          category Kauneus ja terveys
-    if o.CategoryID == 8
-          category Lelut
-    if o.CategoryID == 9
-          category Vapaa-aika
-    p #{category}
-    a.btn.btn-default(href='/businessuser/edit/'+o.OfferID)='Edit offer'
+    h1= o.OfferName
+    p=o.Description
+    p=o.Quantity
+    p=o.Discount
+    p=o.OriginalPrice
+    P=o.CategoryID
+    p=o.OfferID
+    a.btn.btn-warning(href='/businessuser/edit/'+o.OfferID)='Edit offer'
     form(method='POST', action='/businessuser/delete/'+o.OfferID)
-      button='Delete'
+      button.btn.btn-danger='Delete'
   

@@ -3,22 +3,22 @@ extends layout
 block content
   h1 #{title}
   form(method='POST', action='/businessuser/edit/'+offer.OfferID)
-    #form-group
+    .form-group
       label Offer title:
       input(name='Name', type='text', value=offer[0].OfferName)
-    #form-group
+    .form-group
       label Description:
       textarea(name='Description', type = 'text')=offer[0].Description
-    #form-group
+    .form-group
       label Quantity:
       input(name='Quantity', type = 'text', value=offer[0].Quantity)
-    #form-group
+    .form-group
       label Discount (percentage):
       input(name='Discount', type = 'text', value= offer[0].Discount)
-    #form-group
+    .form-group
       label Original price:
       input(name='OriginalPrice', type = 'text', value= offer[0].OriginalPrice)
-    #form-group
+    .form-group
       label Category:
       input(name='CategoryID', type = 'text', value= offer[0].CategoryID)
     br
