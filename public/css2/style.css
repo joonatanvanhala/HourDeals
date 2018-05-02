@@ -1,3 +1,48 @@
+/*Global*/
+body{
+  background: url('../img/store.jpeg') no-repeat 0;;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 400px;
+  max-width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  font-family: 'Nunito', cursive;
+}
+
+body h1, h2, h3, h4, h5, h6 a, p{
+  color: #FFF;
+}
+
+#navbar{
+  text-decoration: none;
+  background-color: rgba(16,16,16,0.70);
+  color: #FFF;
+  padding: 0 20px;
+  line-height: normal;
+  margin: 0;
+  font-size: 40px;
+}
+
+#navbar h1{
+  font-family: 'Engagement', cursive;
+  text-shadow: 2px 2px 5px #181818;
+  font-size: 50px;
+}
+
+.nav a{
+  color: #A0A0A0;
+}
+
+.nav a:hover{
+  color: #FFF;
+}
+
+.navbar-brand{
+  margin: 0 5px;
+}
 .alert-error{
   color: #a94442;
   background-color: #f2dede;
@@ -11,6 +56,59 @@
 }
 form{
   margin-bottom: 60px;
+}
+
+#add-offer-form{
+  margin-top: 10vh;
+  width: 30vw;
+  min-width: 200px;
+  padding: 2%;
+  color: #ffffff;
+  background: rgba(16,16,16,0.90);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-control{
+  resize: none;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  border-bottom: 1px solid #fff;
+}
+
+.form-group{
+  font-family: 'Nunito', sans-serif;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+input{
+  background: transparent;
+}
+
+#add-offer-button{
+  text-transform: uppercase;
+}
+
+.column {
+  margin: 20px;
+  width: 20%;
+  height: 10vh;
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 2.5%;
+  color: #ffffff;
+  background: rgba(16,16,16,0.90);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  word-wrap: break-word;
+}
+
+.column a{
+color: #FFF;
 }
 
 footer{
@@ -27,18 +125,7 @@ footer{
 a{
   color: black;
 }
-.column {
-    float: left;
-    width: 30%;
-    height: 80px;
-    border-style:inset;
-    border-radius: 10px;
-    column-gap: 20px;
-    background-color: #f4f4f4;
-    margin-top: 30px;
-    text-align: center;
-    padding: 0 15px 0 15px;
-}
+
 /* Clear floats after the columns */
 .row{
 

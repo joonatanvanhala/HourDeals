@@ -1,35 +1,37 @@
 extends layout
 
 block content
-  div(class ='offers')
-    div(class = 'row')
+  div.rounded(class ='offers')
+    .row
       each o,i in offer
           if(i % 2 == 0)
-            div(class = 'column')
+            div.rounded(class = 'column')
               a(href="/businessuser/"+o.OfferID)= o.OfferName 
           if(i % 2 != 0)  
-            div(class = 'column')
+            div.rounded(class = 'column')
               a(href="/businessuser/"+o.OfferID)= o.OfferName 
-        
-  form(method='POST', action='/businessuser/add')
-    #form-group
-      label Offer title:
-      input(name='Name', type='text')
-    #form-group
-      label Description:
-      textarea(name='Description', type = 'text')
-    #form-group
-      label Quantity:
-      input(name='Quantity', type = 'text')
-    #form-group
-      label Discount (percentage):
-      input(name='Discount', type = 'text')
-    #form-group
-      label Original price:
-      input(name='OriginalPrice', type = 'text')
-    #form-group
-      label Category:
-      select(name='CategoryID', type = 'text')
+                    
+  form.mx-auto.rounded#add-offer-form(method='POST', action='/businessuser/add')
+    .form-group.row
+      label.col-sm-4.col-form-label Offer title:
+      .col-sm-8
+       input.form-control(name='Name', type='text')
+    .form-group.row
+      label.col-sm-4.col-form-label Quantity:
+      .col-sm-8
+       input.form-control(name='Quantity', type = 'text')
+    .form-group.row
+      label.col-sm-4.col-form-label Discount (%):
+      .col-sm-8
+       input.form-control(name='Discount', type = 'text')
+    .form-group.row
+      label.col-sm-4.col-form-label Original price:
+      .col-sm-8
+       input.form-control(name='OriginalPrice', type = 'text')
+    .form-group.row
+      label.col-sm-4.col-form-label Category:
+      .col-sm-8
+       select.form-control(name='CategoryID', type = 'text')
         option(value = "" selected disabled hidden)
         option(value = 1) Ruoka ja Juoma
         option(value = 2) Elintarvikkeet
@@ -40,5 +42,9 @@ block content
         option(value = 7) Kauneus ja terveys
         option(value = 8) Lelut
         option(value = 9) Vapaa-aika
+    .form-group.row
+      label.col-sm-4.col-form-label Description:
+      .col-sm-8
+       textarea.form-control(name='Description', type = 'text', rows='3')
     br
-    input(type='submit',value='Submit')
+    input.btn.btn-success.col-sm-12#add-offer-button(type='submit',value='Add offer')
