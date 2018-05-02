@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const router = express.Router();
 const path = require('path');
+const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 var db = require('../db/db.js');
@@ -46,11 +47,13 @@ router.post('/add', function(req, res){
   req.checkBody('Discount', 'Discount is required').notEmpty();
   req.checkBody('OriginalPrice', 'Original price is required').notEmpty();
   req.checkBody('CategoryID', 'Category is required').notEmpty();
+  req.check('Discount', 'Check discount (0-100)').isLength({min: 1, max:2});
 
   let errors = req.validationErrors();
   if(errors)
   {
-    res.render('./add_offer', {
+    console.log(errors);
+    res.render('businessuser', {
       errors:errors
     });
   }
