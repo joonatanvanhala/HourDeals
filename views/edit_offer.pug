@@ -2,24 +2,29 @@ extends layout
 
 block content
   h1 #{title}
-  form(method='POST', action='/businessuser/edit/'+offer.OfferID)
-    .form-group
-      label Offer title:
-      input(name='Name', type='text', value=offer[0].OfferName)
-    .form-group
-      label Description:
-      textarea(name='Description', type = 'text')=offer[0].Description
-    .form-group
-      label Quantity:
-      input(name='Quantity', type = 'text', value=offer[0].Quantity)
-    .form-group
-      label Discount (percentage):
-      input(name='Discount', type = 'text', value= offer[0].Discount)
-    .form-group
-      label Original price:
-      input(name='OriginalPrice', type = 'text', value= offer[0].OriginalPrice)
-    .form-group
-      label Category:
-      input(name='CategoryID', type = 'text', value= offer[0].CategoryID)
-    br
-    input(type='submit',value='Submit')
+  form.mx-auto.rounded#offer-form(method='POST', action='/businessuser/edit/'+offer.OfferID)
+    .form-group.row
+      label.col-sm-4.col-form-label Offer title:
+      .col-sm-8
+       input.form-control(name='Name', type='text', value=offer[0].OfferName)
+    .form-group.row
+      label.col-sm-4.col-form-label Quantity:
+      .col-sm-8
+       input.form-control(name='Quantity', type = 'text', value=offer[0].Quantity)
+    .form-group.row
+      label.col-sm-4.col-form-label Discount (%):
+      .col-sm-8
+       input.form-control(name='Discount', type = 'text', value= offer[0].Discount)
+    .form-group.row
+      label.col-sm-4.col-form-label Original price:
+      .col-sm-8
+       input.form-control(name='OriginalPrice', type = 'text', value= offer[0].OriginalPrice)
+    .form-group.row
+      label.col-sm-4.col-form-label Category:
+      .col-sm-8
+       input.form-control(name='CategoryID', type = 'text', value= offer[0].CategoryID)
+    .form-group.row
+      label.col-sm-4.col-form-label Description:
+      .col-sm-8
+       textarea.form-control(name='Description', type = 'text')=offer[0].Description
+    input.btn.btn-success.col-sm-12(type='submit',value='Confirm')

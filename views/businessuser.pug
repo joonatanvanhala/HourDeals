@@ -1,8 +1,13 @@
 extends layout
 
 block content
-  div.rounded(class ='offers')
-    .row
+  .container
+    != messages('message', locals)
+    if errors
+      each error, i in errors
+        div(class="alert alert-danger") #{error.msg}
+  div(class ='offers')
+    div(class = 'row')
       each o,i in offer
           if(i % 2 == 0)
             div.rounded(class = 'column')
@@ -11,7 +16,7 @@ block content
             div.rounded(class = 'column')
               a(href="/businessuser/"+o.OfferID)= o.OfferName 
                     
-  form.mx-auto.rounded#add-offer-form(method='POST', action='/businessuser/add')
+  form.mx-auto.rounded#offer-form(method='POST', action='/businessuser/add')
     .form-group.row
       label.col-sm-4.col-form-label Offer title:
       .col-sm-8

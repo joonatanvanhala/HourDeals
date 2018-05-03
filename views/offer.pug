@@ -1,15 +1,35 @@
 extends layout
 
 block content
+ .container-offer#offer_form
   each o,i in offer
     h1= o.OfferName
-    p=o.Description
-    p=o.Quantity
-    p=o.Discount
-    p=o.OriginalPrice
-    P=o.CategoryID
-    p=o.OfferID
-    a.btn.btn-warning(href='/businessuser/edit/'+o.OfferID)='Edit offer'
+    form.mx-auto.rounded#offer-form(method='POST', action='/businessuser/edit/'+offer.OfferID)
+      .form-group.row
+        label.col-sm-4.col-form-label Offer title:
+        .col-sm-8
+         p.form-control=o.OfferName
+      .form-group.row
+        label.col-sm-4.col-form-label Quantity:
+        .col-sm-8
+         p.form-control=o.Quantity
+      .form-group.row
+        label.col-sm-4.col-form-label Discount (%):
+        .col-sm-8
+         p.form-control=o.Discount
+      .form-group.row
+        label.col-sm-4.col-form-label Original price:
+        .col-sm-8
+         p.form-control=o.OriginalPrice
+      .form-group.row
+        label.col-sm-4.col-form-label Category:
+        .col-sm-8
+         p.form-control=o.CategoryID
+      .form-group.row
+        label.col-sm-4.col-form-label Description:
+        .col-sm-8
+         p.form-control=o.Description
+    a.btn.btn-warning.col-sm-4.justify-content-center#edit-offer-button(href='/businessuser/edit/'+o.OfferID)='Edit offer'
     form(method='POST', action='/businessuser/delete/'+o.OfferID)
-      button.btn.btn-danger='Delete'
+      button.btn.btn-danger.col-sm-4#delete-offer-button='Delete'
   
