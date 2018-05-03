@@ -4,6 +4,7 @@ block content
  .container-offer#offer_form
   each o,i in offer
     h1= o.OfferName
+<<<<<<< HEAD
     form.mx-auto.rounded#offer-form(method='POST', action='/businessuser/edit/'+offer.OfferID)
       .form-group.row
         label.col-sm-4.col-form-label Offer title:
@@ -30,6 +31,32 @@ block content
         .col-sm-8
          p.form-control=o.Description
     a.btn.btn-warning.col-sm-4.justify-content-center#edit-offer-button(href='/businessuser/edit/'+o.OfferID)='Edit offer'
+=======
+    p=o.Description
+    p=o.Quantity
+    p=o.Discount*100
+    p=o.OriginalPrice
+    if o.CategoryID == 1
+          category Ruoka ja juoma
+    if o.CategoryID == 2
+          category Elintarvikkeet
+    if o.CategoryID == 3
+          category Elektroniikka
+    if o.CategoryID == 4
+          category Vaatteet
+    if o.CategoryID == 5
+          category Autoilu
+    if o.CategoryID == 6
+          category Käyttötavarat
+    if o.CategoryID == 7
+          category Kauneus ja terveys
+    if o.CategoryID == 8
+          category Lelut
+    if o.CategoryID == 9
+          category Vapaa-aika
+    p #{category}
+    a.btn.btn-warning(href='/businessuser/edit/'+o.OfferID)='Edit offer'
+>>>>>>> 2c5d41c12bbfe860f09cd7d68fea6da953ca8b1f
     form(method='POST', action='/businessuser/delete/'+o.OfferID)
       button.btn.btn-danger.col-sm-4#delete-offer-button='Delete'
   
